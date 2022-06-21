@@ -1,0 +1,9 @@
+{
+  "name": "ms_financial",
+  "version": "1.0.0",
+  "description": "Sistema de controle de dados financeiros",
+  "main": "src/index.js",
+  "repository": "https://github.com/prodevcom/fiap-mba-ms",
+  "author": "Marcelo Mussi",
+  "license": "MIT"
+}
