@@ -44,7 +44,7 @@ route.get('/', tokenVerify, (req, res) => {
 });
 
 route.post('/update-password', tokenVerify, (req, res) => {
-    User.findOne({email: req.data.email}, (error, user) => {
+    User.findOne({apikey: req.data.apikey}, (error, user) => {
         if (error) res.status(500).send({error});
         if (!user) res.status(400).send({error: 'NotFound'});
         bcrypt.compare(req.body.password, user.password, (error, same) => {
@@ -52,9 +52,6 @@ route.post('/update-password', tokenVerify, (req, res) => {
             bcrypt.hash(req.body.newPassword, serverConfig.salt, (error, result) => {
                 User.findByIdAndUpdate(user._id, {password: result}, {new: false}, (error, user) => {
                     if (error) res.status(500).send({error});
-
-                    console.log(user);
-
                     res.status(200).send({success: true});
                 });
             });

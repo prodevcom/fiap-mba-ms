@@ -14,7 +14,7 @@ route.post('/', (req, res) => {
         bcrypt.compare(req.body.password, user.password, (error, same) => {
             if (error) return res.status(500).send({error});
             if (!same) return res.status(403).send({error: 'CredentialsInvalid'});
-            const token = tokenizer(user._id, user.email);
+            const token = tokenizer(user._id, user.apikey);
             return res.status(200).send({
                 token, apiKey: user.apikey,
             });
